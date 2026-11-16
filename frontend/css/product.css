@@ -1,0 +1,284 @@
+#goods-title a:nth-child(4) {
+    font-family: "MullerBold", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+#product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#product-flower-1 {
+    position: absolute;
+    top: calc(55% - 50px);
+    left: calc(10% - 240px);
+    z-index: 1;
+}
+
+#product-flower-2 {
+    position: absolute;
+    top: calc(5% - 50px);
+    right: calc(13% - 240px);
+    z-index: 2;
+}
+
+.product-product-specification {
+    display: flex;
+    padding-bottom: 80px;
+}
+
+#product-specification-choice {
+    width: 392px;
+    padding-left: 30px;
+}
+
+.product-specification-img {
+    width: 435px;
+    height: 360px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 20px rgba(155, 155, 155, 0.25);
+    border-radius: 10px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.product-specification-brand {
+    font-family: "MullerBold", sans-serif;
+    color: #C4C4C4;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.product-specification-title {
+    font-family: "PlayfairDisplayBold", sans-serif;
+    padding: 25px 0 0 0;
+    color: #373B2E;
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.product-specification-text {
+    font-family: "MullerRegular", sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    color: #373B2E;
+}
+
+.product-specification-volume {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 415px;
+}
+
+.radio {
+    margin-bottom: 0;
+}
+
+.product-description-quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    max-width: 190px;
+    padding: 40px 0 45px 0;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.radio_label:before {
+    background-color: transparent;
+    border: 1px solid #94C39D;
+}
+
+#product .gods-block-btn {
+    width: 227px;
+    height: 60px;
+    font-size: 17px;
+    flex-direction: unset;
+    text-decoration: none;
+    outline: 0;
+    justify-content: space-between;
+}
+
+
+#product .gods-block-container {
+    display: block;
+}
+
+.product-description-delivery {
+    padding-top: 17px;
+    font-family: "MullerRegular", sans-serif;
+    color: #828282;
+    font-size: 13px;
+}
+
+.product-description-delivery a {
+    font-family: "MullerRegular", sans-serif;
+    color: #828282;
+    font-size: 13px;
+}
+
+.gods-block-price-stock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 120px;
+}
+
+#product-specification-choice .price-stock-text {
+    font-family: "MullerRegular", sans-serif;
+    font-size: 12px;
+    color: #373B2E;
+}
+
+#product-specification-choice .price-stock-text-none {
+    font-family: "MullerRegular", sans-serif;
+    font-size: 12px;
+    color: #828282;
+}
+
+#product-specification-choice .gods-block-price-stock-width {
+    max-width: 109px;
+}
+
+.block-price {
+    font-family: "MullerBold", sans-serif;
+    font-size: 25px;
+    color: #313131;
+    padding-top: 14px;
+    line-height: 30px;
+}
+
+.gods-block-main-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-description {
+    display: flex;
+}
+
+.category-description {
+    font-family: "PlayfairDisplayBold", sans-serif;
+    font-size: 25px;
+    line-height: 30px;
+    color: #828282;
+    border-bottom: 2px solid #C4C4C4;;
+    padding: 14px 50px;
+    cursor: pointer;
+}
+
+.category-description.active {
+    color: #68A95F;
+    border-bottom: 4px solid #68A95F;
+    /*  box-shadow: 0 5px 0 0 #68A95F;*/
+    /*    padding: 14px;
+        height: 100%;*/
+}
+
+.description-product {
+    font-family: "MullerRegular", sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 20px 20px 0 0;
+}
+
+.product-artising {
+    width: 243px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 20px rgba(155, 155, 155, 0.25);
+    border-radius: 10px;
+    padding: 20px 15px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+#description-ingredients {
+    display: none;
+}
+
+#description-ingredients ul {
+    padding-left: 0;
+}
+
+#description-application {
+    display: none;
+}
+
+.artising-container {
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #68A95F;
+    width: 215px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.artising-img {
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 120px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.product-artising-title {
+    font-family: "MullerBold", sans-serif;
+    text-transform: uppercase;
+    color: #373B2E;
+    text-align: center;
+}
+
+.artising-text {
+    font-family: "MullerRegular", sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+    padding-top: 20px;
+}
+
+.product-container-description {
+    max-width: 885px;
+}
+
+.product-main-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 0;
+    position: relative;
+    z-index: 9;
+}
+

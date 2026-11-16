@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Оформление заказа - IZI BY IZI</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/jquery-ui.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/common-adaptive.css">
+  <link rel="stylesheet" href="/css/order.css">
+  <link rel="stylesheet" href="/css/order-adaptive.css">
+</head>
+<body>
+<div id="app-header"></div>
+<div id="app-second-header"></div>
+
+<div id="order-flower">
+  <div id="order-flower-tr"><img src="/images/order-flower-tr.png" alt=""></div>
+  <div id="order-flower-left"><img src="/images/order-flower-left.png" alt=""></div>
+  <div id="order-flower-right"><img src="/images/order-flower-right.png" alt=""></div>
+  <div id="order">
+    <div class="title-container">
+      <div class="title-container-title">Оформление</div>
+      <div class="title-container-text">заказа</div>
+    </div>
+
+    <form id="order-container">
+      <div class="order-block">
+        <div class="order-block-container">
+          <div class="order-block-title">Личные данные</div>
+          <div class="block-title-container">
+            <div class="block-title">
+              <div class="block-input-text">
+                <label>Ваше имя</label>
+                <input type="text" id="name" name="name" placeholder="Александра">
+              </div>
+              <div class="block-input-phone">
+                <label>Ваш телефон</label>
+                <input type="text" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
+              </div>
+            </div>
+            <div class="block-img"><img src="/images/order-phone.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-block">
+        <div class="order-block-container">
+          <div class="order-block-title order-title">Способ получения заказа</div>
+          <div id="order-radio-block">
+            <div id="order-radio-container">
+              <div class="radio">
+                <input class="radio_input" name="type" value="pickup" type="radio" id="pickup" checked>
+                <label class="radio_label" for="pickup">
+                  <span>Самовывоз</span>
+                  <span class="freedom-text">Бесплатно</span>
+                  <div>Заберёте заказ в ближайшем пункте выдачи ЯндексМаркет/Ozon/WB/CDEK.</div>
+                </label>
+              </div>
+              <div class="radio">
+                <input class="radio_input" name="type" value="delivery" type="radio" id="delivery">
+                <label class="radio_label" for="delivery">
+                  <span>Доставка курьерской службой</span>
+                  <span class="freedom-text">Бесплатно при заказе от 3 000 руб.</span>
+                  <div>Доставим до подъезда или до двери. Стоимость доставки уточнит менеджер.</div>
+                </label>
+              </div>
+            </div>
+            <div id="order-radio-img"><img src="/images/order-gift.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-block" id="delivery-block-custom" style="display:none;">
+        <div class="order-block-container">
+          <div class="order-block-title">Полный адрес</div>
+          <div id="order-container-city">
+            <div class="block-input-text">
+              <label>Введите Ваш полный адрес</label>
+              <input type="text" id="address" name="address" placeholder="Москва, ул. центральная д. 55 кв. 111">
+            </div>
+            <div class="order-img"><img src="/images/order-city.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-block" id="sdek-choose">
+        <div class="order-block-container">
+          <div class="order-block-title">Пункт выдачи</div>
+          <p>Менеджер уточнит ближайший к вам ПВЗ по телефону после оформления заказа.</p>
+          <input type="hidden" id="pickup_info" name="pickup_info" value="ПВЗ">
+        </div>
+      </div>
+
+      <div class="order-block">
+        <div class="order-block-container">
+          <div class="order-block-title order-title-comment">Комментарий к заказу</div>
+          <div id="comment">
+            <div class="block-input-text block-textarea">
+              <label for="messages">Ваш комментарий</label>
+              <textarea name="comment" id="messages" placeholder="Начните писать комментарий к заказу..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert" style="display:none;">Заполните все поля!</div>
+      <div class="order-main-title">
+        <div>После подтверждения оформления заказа</div>
+        <div>с Вами свяжется менеджер и уточнит все детали заказа.</div>
+      </div>
+      <div class="order-btn">
+        <button type="submit" class="gods-block-btn"><span>Оформить заказ</span></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="app-footer"></div>
+
+<script src="/config.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/order.js"></script>
+</body>
+</html>

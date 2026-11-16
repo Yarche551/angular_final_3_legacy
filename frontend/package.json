@@ -1,0 +1,8 @@
+{
+  "name": "izi-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve -s -l 8080 --cors ."
+  }
+}

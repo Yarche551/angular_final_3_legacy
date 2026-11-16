@@ -1,0 +1,228 @@
+@media screen and (min-width: 1921px) {
+
+}
+
+@media screen and (max-width: 1229px) {
+    #product {
+        padding: 10px;
+    }
+}
+
+/*1024-1199*/
+@media screen and (max-width: 1199px) {
+    #product {
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    .product-container-description {
+        margin: 0 auto;
+    }
+
+    .product-main-container {
+        display: block;
+    }
+
+    .product-artising {
+        width: 100%;
+        height: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        margin-top: 20px;
+    }
+
+    .product-artising-title {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+
+    .artising-container {
+        margin: 0;
+    }
+
+    .product-description {
+        justify-content: center;
+    }
+
+    #product-flower-2 {
+        right: calc(13% - 140px);
+    }
+}
+
+/*768-1023*/
+@media screen and (max-width: 1023px) {
+    .gods-block-main-price {
+        display: block;
+    }
+
+    .gods-block-price {
+        padding-top: 20px;
+    }
+
+    .product-product-specification {
+        align-items: center;
+    }
+
+    .category-description {
+        padding: 14px 30px;
+    }
+    #product-flower-2 {
+        display: none;
+    }
+}
+
+/*579-767*/
+@media screen and (max-width: 767px) {
+    #product .gods-block-btn span {
+        display: block;
+    }
+
+    .category-description {
+        padding: 14px 10px;
+        font-size: 22px;
+    }
+
+    .artising-container {
+        margin: 10px;
+    }
+
+    #product-flower-2 {
+        position: absolute;
+        top: calc(39% - 40px);
+        right: calc(23% - 140px)
+    }
+    #product-flower-2 img {
+        width: 150px;
+    }
+}
+
+/*479-579*/
+@media screen and (max-width: 579px) {
+    .product-product-specification {
+        display: flex;
+        flex-direction: column;
+        height: 700px;
+
+    }
+    #product-flower-2 {
+        top: calc(51% - 40px);
+        right: calc(23% - 140px);
+    }
+
+    #product-specification-choice {
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+    }
+
+    .product-specification-img {
+        order: 3;
+        position: absolute;
+        top: 150px;
+    }
+
+    .gods-block-main-price {
+        display: flex;
+    }
+
+    .gods-block-price {
+        padding: 0;
+    }
+
+    .product-description-quantity {
+        padding-top: 470px;
+        margin: 0 auto;
+    }
+
+    .product-specification-text {
+        display: none;
+    }
+
+    .product-container-description {
+        position: relative;
+    }
+
+    .gods-block-main-price {
+        flex-direction: row-reverse;
+    }
+
+    #product .gods-block-btn {
+        width: unset;
+    }
+
+    #product .gods-block-container {
+        width: 170px;
+    }
+
+    .product-description-delivery a {
+        border-bottom: 1px solid grey;
+    }
+
+    .product-description-delivery {
+        text-align: center;
+        line-height: 17px;
+    }
+
+    .category-description {
+        padding: 14px 12px;
+        font-size: 17px;
+    }
+    .product-artising{
+        width: 300px;
+        margin: 20px auto;
+    }
+}
+
+/*320-479*/
+@media screen and (max-width: 479px) {
+    #product {
+        padding: 15px;
+    }
+    .product-product-specification {
+        height: 680px;
+        padding-bottom: 0;
+    }
+    .container-desription {
+        width: 340px;
+        margin: 0 auto;
+    }
+    #product-specification-choice {
+        width: 330px;
+    }
+    .category-description {
+        padding: 14px 9px;
+        font-size: 13px;
+    }
+
+    .product-specification-img {
+        width: 300px;
+        height: 260px;
+        top: calc(10% - -41px);
+    }
+
+    .product-description-quantity {
+        padding-top: 365px;
+    }
+
+    #product .gods-block-container {
+        width: 150px;
+    }
+
+    .gods-block-price-stock {
+        max-width: 130px;
+    }
+
+    .category-description {
+        line-height: 18px;
+    }
+}
+@media screen and (max-width: 360px) {
+    #product-specification-choice {
+        width: 300px;
+    }
+    .product-artising {
+        width: 290px;
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Интернет-магазин косметики - IZI BY IZI</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <style>
+    html, body { background: #FBFBFB; margin: 0; }
+    #app-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #FBFBFB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .35s ease;
+    }
+    #app-loader.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #app-loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e4e4e4;
+      border-top-color: #55A265;
+      border-radius: 50%;
+      animation: app-loader-spin .7s linear infinite;
+    }
+    @keyframes app-loader-spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <script>window.__iziLoadStart = Date.now();</script>
+  <link rel="stylesheet" href="/css/slick.css">
+  <link rel="stylesheet" href="/css/slick-theme.css">
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/jquery-ui.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/common-adaptive.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/index-adaptive.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/products-adaptive.css">
+  <link rel="stylesheet" href="/css/product.css">
+  <link rel="stylesheet" href="/css/product-adaptive.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/cart-adaptive.css">
+  <link rel="stylesheet" href="/css/order.css">
+  <link rel="stylesheet" href="/css/order-adaptive.css">
+  <link rel="stylesheet" href="/css/about.css">
+  <link rel="stylesheet" href="/css/about-adaptive.css">
+  <link rel="stylesheet" href="/css/delivery.css">
+  <link rel="stylesheet" href="/css/delivery-adaptive.css">
+  <link rel="stylesheet" href="/css/contact.css">
+  <link rel="stylesheet" href="/css/contact-adaptive.css">
+  <link rel="stylesheet" href="/css/privacy-policy.css">
+  <link rel="stylesheet" href="/css/user-agreement.css">
+</head>
+<body>
+<div id="app-loader" aria-busy="true" aria-live="polite"><div id="app-loader-spinner"></div></div>
+<div id="app-header"></div>
+<div id="app-page"></div>
+<div id="app-footer"></div>
+
+<script src="/config.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/products.js"></script>
+<script src="/js/product.js"></script>
+<script src="/js/brands.js"></script>
+<script src="/js/search.js"></script>
+<script src="/js/cart.js"></script>
+<script src="/js/order.js"></script>
+<script src="/js/contact.js"></script>
+<script src="/js/static-page.js"></script>
+<script src="/js/router.js"></script>
+</body>
+</html>

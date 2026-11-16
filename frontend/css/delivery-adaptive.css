@@ -1,0 +1,164 @@
+/*1024-1199*/
+@media screen and (max-width: 1199px) {
+    .delivery-map {
+        width: 590px;
+    }
+}
+
+/*768-1023*/
+@media screen and (max-width: 1023px) {
+    .delivery-map {
+        width: 290px;
+    }
+
+    #delivery-about-container {
+        margin-left: 0;
+    }
+
+    .delivery-block-text {
+        max-width: 200px;
+    }
+
+    #delivery-map-container img:nth-child(1) {
+        width: 180px;
+    }
+
+    #delivery-map-text {
+        width: 138px;
+        height: 140px;
+        top: 17px;
+        left: 22px;
+        font-size: 15px;
+    }
+
+    #delivery-map-text div {
+        width: 128px;
+        margin: 0 auto;
+        padding-top: 35px;
+    }
+
+    .delivery-map {
+        margin-top: -20px;
+    }
+
+    #delivery-map-container {
+        top: 50px;
+    }
+
+    .delivery-flower {
+        position: absolute;
+        left: 68px;
+        bottom: 32px;
+        z-index: 7;
+        width: 45px;
+    }
+
+    .delivery-ellipse {
+        position: absolute;
+        bottom: 22px;
+        left: 68px;
+        z-index: 5;
+    }
+
+    #delivery-about-container {
+        margin: 0;
+    }
+
+    .delivery-block-text {
+        max-width: 200px;
+    }
+
+    .delivery-about-title {
+        padding-left: 0;
+    }
+
+}
+
+/*579-767*/
+@media screen and (max-width: 767px) {
+    #delivery-container {
+        margin: 0 auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #delivery .title-container-text {
+        padding-left: 0;
+    }
+
+    #delivery-about-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #delivery-about {
+        padding: 30px 0;
+    }
+
+    .delivery-block-img {
+        width: 100px;
+    }
+
+    .delivery-block-img img:nth-child(1) {
+        width: 90px;
+    }
+
+    .delivery-about-block {
+        padding-top: 50px;
+    }
+
+    .delivery-about-title {
+        padding: 0 15px;
+    }
+}
+
+/*479-579*/
+@media screen and (max-width: 579px) {
+    .delivery-description {
+        width: 345px;
+    }
+
+    .delivery-description-subtitle {
+        font-size: 14px;
+    }
+
+    #delivery-map {
+        margin-top: -50px;
+    }
+
+    #delivery-map-container {
+        top: 46px;
+        left: calc(61% - 100px);
+    }
+
+    .delivery-ellipse {
+        display: none;
+    }
+
+    #delivery .title-container {
+        padding-bottom: 50px;
+        padding-top: 40px;
+    }
+}
+
+/*320-479*/
+@media screen and (max-width: 370px) {
+    .delivery-description {
+        width: 300px;
+    }
+
+    .delivery-description-title {
+        font-size: 21px;
+    }
+    .delivery-description-subtitle{
+        font-size: 12px;
+    }
+    .delivery-description-text{
+        font-size: 12px;
+    }
+    .delivery-block-text {
+        max-width: 160px;
+        font-size: 16px;
+    }
+}
+

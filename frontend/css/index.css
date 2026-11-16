@@ -1,0 +1,228 @@
+#header {
+    background: #FBFBFB;
+}
+
+#banner {
+    background: #EAFFEE;
+    height: 510px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+#banner #banner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#banner #banner-flower-1 {
+    position: absolute;
+    top: 0;
+    left: calc(0% - 50px);
+    z-index: 1;
+}
+
+#banner #banner-flower-2 {
+    position: absolute;
+    bottom: calc(0% - 26px);
+    left: calc(0% - 53px);
+    z-index: 1;
+}
+
+#banner #banner-flower-3 {
+    position: absolute;
+    bottom: 0;
+    right: calc(0% - 81px);
+    z-index: 1;
+}
+
+#banner #banner-slider {
+
+    z-index: 9;
+    background: linear-gradient(180deg, #B0F2BE 0%, #55A265 100%);
+    box-shadow: 0 20px 40px rgba(44, 86, 7, 0.7);
+    border-radius: 15px;
+    margin: 40px;
+}
+
+#banner-slider img {
+    width: 100%;
+
+}
+
+#banner #banner-slider div {
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#banner-slider-1 {
+    background: url("../images/banner-slider-1.png") no-repeat center;
+    width: 100%;
+    height: 100%;
+}
+
+#banner .slick-dots {
+    bottom: -40px;
+}
+
+#banner .slick-dots li button {
+    background: #FDFDFD;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+#banner .slick-dots li.slick-active button:before {
+    color: #64AE73;
+    font-size: 8px;
+    top: -2px;
+    left: -2px;
+}
+
+#banner .slick-dots li.slick-active button {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#banner .slick-dots li button:before {
+    font-size: 0;
+}
+
+#banner .slick-prev:before, .slick-next:before {
+    display: none;
+}
+
+
+#goods-advantages {
+    background: #FFFFFF;
+    box-shadow: 0 -8px 30px rgba(155, 155, 155, 0.55);
+    height: 210px;
+}
+
+#goods-advantages .goods-advantage {
+    display: flex;
+    align-items: center;
+    width: 240px;
+    margin-right: 55px;
+}
+
+#goods-advantages #goods-advantages-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    height: 210px;
+}
+
+#goods-advantages .goods-advantage-text {
+    font-size: 17px;
+    line-height: 17px;
+    font-family: "MullerBold", sans-serif;
+    width: 145px;
+    color: #313131;
+}
+
+#goods-advantages .goods-advantage-img {
+    width: 78px;
+    height: 78px;
+    border: 1px solid #94C39D;
+    box-sizing: border-box;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+}
+
+#goods-advantages .goods-advantage-ellipse {
+    width: 66px;
+    height: 66px;
+    padding: 10px;
+    border: 3px solid #94C39D;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#brands {
+    background: #FFFFFF;
+    box-shadow: 0 8px 20px rgba(155, 155, 155, 0.25);
+    overflow: hidden;
+}
+
+#brands-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+}
+
+#brands .title-container-title {
+    background: linear-gradient(180deg, #B0F2BE 0%, #55A265 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#brands .title-container-text {
+    color: #3F3F3F;
+}
+
+#brands .title-container {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+
+#brands-container-img {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    padding-bottom: 75px;
+
+}
+#brands-container-img div,
+#brands-container-img a {
+    justify-content: center;
+    display: flex;
+    width: 205px;
+    padding-top: 35px;
+}
+
+#brands-container-img.brands-page {
+    justify-content: center;
+}
+
+#brands-container-img.brands-page > a {
+    margin: 10px;
+}
+
+#brands-container-img.brands-page > a > img {
+    max-width: 200px;
+    transition: all .3s;
+    height: auto;
+    align-self: flex-start;
+}
+#brands-container-img.brands-page > a:hover > img {
+   transform: scale(1.2);
+}
+
+
+#banner-flower-left {
+    position: absolute;
+    top: calc(17% - 50px);
+    left: calc(0% - 80px);
+}
+
+#banner-flower-right {
+    position: absolute;
+    top: calc(20% - 50px);
+    right: calc(0% - 80px);
+}
+
+
+

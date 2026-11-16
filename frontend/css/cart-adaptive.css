@@ -1,0 +1,234 @@
+/*1024-1199*/
+@media screen and (max-width: 1199px) {
+    #cart-container {
+        padding: 60px 15px 17px 15px;
+    }
+
+    #cart-btn-img {
+        width: 410px;
+    }
+
+    #cart-container-btn {
+        width: 359px;
+    }
+
+    .cart-block {
+        width: 572px;
+    }
+
+    #cart-btn-img-border div {
+        width: 210px;
+    }
+
+    #cart-btn-img-border #cart-image-gift {
+        background-position: -17px -12px;
+        width: 121px;
+        height: 118px;
+        background-repeat: no-repeat;
+        background-size: 147px;
+    }
+}
+
+/*768-1023*/
+@media screen and (max-width: 1023px) {
+    .cart-block {
+        width: 372px;
+    }
+
+    #cart-btn-img-border div {
+        font-size: 19px;
+    }
+
+    #cart-btn-img {
+        width: 320px;
+    }
+
+    #cart-btn-img-border #cart-image-gift {
+        background-position: -31px -12px;
+    }
+
+    #cart-container-btn {
+        width: 285px;
+    }
+
+    #cart-container-btn-border {
+        padding: 124px 25px 30px 25px;
+    }
+
+    #cart-btn-price {
+        font-size: 18px;
+    }
+
+    #cart-container-btn .gods-block-btn {
+        font-size: 15px;
+    }
+
+    #cart-btn-quantity {
+        font-size: 16px;
+    }
+
+    #cart-container {
+        justify-content: space-evenly;
+    }
+
+    #cart-container-btn {
+        height: 410px;
+    }
+
+    #cart-container-btn-border {
+        padding: 154px 25px 30px 25px;
+    }
+
+}
+
+/*579-767*/
+@media screen and (max-width: 767px) {
+    #cart-flower-bg {
+        position: absolute;
+        top: calc(38% - 36px);
+        right: calc(6% - 50px);
+    }
+
+    #cart-flower-bg img {
+        width: 200px;
+    }
+
+    #cart-container {
+        flex-direction: column;
+    }
+
+    .cart-block {
+        margin: 0 auto 20px auto;
+        width: 530px;
+    }
+
+    #cart-btn-img {
+        width: 410px;
+    }
+
+    #cart-btn-img-border div {
+        font-size: 24px;
+    }
+
+    #cart-btn-img-border #cart-image-gift {
+        background-position: -37px -42px;
+        width: 131px;
+        height: 118px;
+        background-repeat: no-repeat;
+        background-size: unset;
+    }
+
+    #cart-container-btn {
+        width: 359px;
+    }
+
+    #cart-btn-quantity {
+        font-size: 23px;
+    }
+
+    #cart-btn-price {
+        font-size: 23px;
+    }
+
+    #cart-container-btn .gods-block-btn {
+        font-size: 23px;
+    }
+
+    #cart-container-btn .gods-block-btn span {
+        display: block;
+    }
+
+}
+
+/*479-579*/
+@media screen and (max-width: 579px) {
+    .cart-block {
+        width: 345px;
+        align-items: flex-start;
+    }
+
+    .cart-block-specification {
+        flex-direction: column;
+    }
+
+    .cart-block-price {
+        padding-top: 20px;
+    }
+
+    .cart-block-img {
+        width: 180px;
+        height: 70px;
+    }
+
+    #cart-btn-img {
+        width: 345px;
+        height: 100%;
+    }
+
+    #cart-btn-img-border div {
+        font-size: 20px;
+    }
+
+    #cart-btn-img-border #cart-image-gift {
+        background-position: -23px -11px;
+        width: 131px;
+        height: 118px;
+        background-repeat: no-repeat;
+        background-size: 147px;
+    }
+
+    #cart-container-btn {
+        width: 315px;
+    }
+
+    #cart-btn-quantity {
+        font-size: 20px;
+        margin-top: -165px;
+    }
+
+    #cart-btn-price {
+        font-size: 20px;
+    }
+
+    #cart-container-btn .gods-block-btn span {
+        font-size: 19px;
+    }
+
+    #cart-container-btn {
+        height: 420px;
+    }
+
+    #cart-container-btn-border {
+        padding: 311px 25px 30px 25px;
+    }
+}
+
+/*320-479*/
+@media screen and (max-width: 370px) {
+    #cart-container {
+        padding: 60px 5px 17px 5px;
+    }
+
+    .cart-block {
+        width: 300px;
+        padding: 20px 30px 20px 0;
+    }
+
+    .cart-close {
+        top: 15px;
+        right: 15px;
+    }
+
+    #cart-btn-img {
+        width: 300px;
+    }
+
+    #cart-btn-img-border div {
+        font-size: 15px;
+    }
+
+    #cart-btn-img-border #cart-image-gift {
+        background-position: -31px -11px;
+    }
+}
+

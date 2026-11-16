@@ -1,0 +1,26 @@
+{
+  "name": "izi-backend",
+  "version": "1.0.0",
+  "description": "IZI BY IZI shop REST API (MongoDB)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "migrate-mongo up",
+    "migrate:down": "migrate-mongo down",
+    "migrate:status": "migrate-mongo status",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "migrate-mongo": "^11.0.0"
+  }
+}

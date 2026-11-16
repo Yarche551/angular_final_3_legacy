@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Товар - IZI BY IZI</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/jquery-ui.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/common-adaptive.css">
+  <link rel="stylesheet" href="/css/product.css">
+  <link rel="stylesheet" href="/css/product-adaptive.css">
+</head>
+<body>
+<div id="app-header"></div>
+<div id="app-second-header"></div>
+
+<div id="product">
+  <div id="product-container">
+    <div id="product-flower-1"><img src="/images/product-flower-1.png" alt=""></div>
+    <div id="product-flower-2"><img src="/images/product-flower-2.png" alt=""></div>
+    <div id="goods-title"></div>
+
+    <div class="product-main-container">
+      <div class="product-container-description">
+        <div class="product-product-specification">
+          <div class="product-specification-img" id="product-image"></div>
+          <div id="product-specification-choice">
+            <div class="product-specification-brand" id="product-brand"></div>
+            <div class="product-specification-title" id="product-name"></div>
+            <div class="product-description-quantity">
+              <div class="product-specification-text">Количество:</div>
+              <div class="quantity-block">
+                <button class="quantity-arrow-minus cart-count-change" data-action="remove"> -</button>
+                <input class="quantity-num" disabled type="number" id="product-count" value="1"/>
+                <button class="quantity-arrow-plus cart-count-change" data-action="add" data-max="1"> +</button>
+              </div>
+            </div>
+            <div class="gods-block-main-price">
+              <div class="gods-block-container">
+                <a href="javascript:void(0)" class="gods-block-btn" id="product-add-to-cart" data-id="">
+                  <div>
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M26.0391 10.418H3.96101C0.750073 10.5996 0.380932 14.1387 0.77351 15.3047L3.31062 26.4727C3.69148 28.1602 5.00398 29.3379 6.49812 29.3379H23.502C24.9962 29.3379 26.3087 28.1602 26.6895 26.4727L29.2266 15.3047C29.7481 13.8281 28.7755 10.418 26.0391 10.418ZM10.2716 23.8418C10.2716 24.5039 9.73835 25.0371 9.07624 25.0371C8.41413 25.0371 7.88093 24.5039 7.88093 23.8418V16.377C7.88093 15.7148 8.41413 15.1816 9.07624 15.1816C9.73835 15.1816 10.2716 15.7148 10.2716 16.377V23.8418ZM16.0548 23.8418C16.0548 24.5039 15.5216 25.0371 14.8594 25.0371C14.1973 25.0371 13.6641 24.5039 13.6641 23.8418V16.377C13.6641 15.7148 14.1973 15.1816 14.8594 15.1816C15.5216 15.1816 16.0548 15.7148 16.0548 16.377V23.8418ZM21.838 23.8418C21.838 24.5039 21.3048 25.0371 20.6426 25.0371C19.9805 25.0371 19.4473 24.5039 19.4473 23.8418V16.377C19.4473 15.7148 19.9805 15.1816 20.6426 15.1816C21.3048 15.1816 21.838 15.7148 21.838 16.377V23.8418Z" fill="white"/>
+                      <path d="M15 3.05273C17.7598 3.05273 20.1152 5.10351 21.0703 7.99219H23.5547C22.4707 3.76758 19.0547 0.667969 15 0.667969C10.9453 0.667969 7.53516 3.76758 6.44531 7.99219H8.92383C9.88477 5.10351 12.2402 3.05273 15 3.05273Z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span>В корзину</span>
+                </a>
+                <div class="product-description-delivery">
+                  Ознакомьтесь с <a href="/delivery">условиями доставки</a>
+                </div>
+              </div>
+              <div class="gods-block-price">
+                <div class="gods-block-price-stock" id="product-stock-ok">
+                  <div class="price-stock-img"><img src="/images/product-done.png" alt=""></div>
+                  <div class="price-stock-text">Товар в наличии</div>
+                </div>
+                <div class="gods-block-price-stock gods-block-price-stock-width" id="product-stock-none" style="display:none;">
+                  <div class="price-stock-img"><img src="/images/product-cross.png" alt=""></div>
+                  <div class="price-stock-text-none">Нет в наличии</div>
+                </div>
+                <div class="block-price" id="product-price"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="container-desription">
+          <div class="product-description">
+            <div class="category-description active" data-id="description-product">Описание товара</div>
+            <div class="category-description" data-id="description-ingredients">Ингредиенты</div>
+            <div class="category-description" data-id="description-application">Применение</div>
+          </div>
+          <div id="description-product" class="description-product"></div>
+          <div id="description-ingredients" class="description-product"></div>
+          <div id="description-application" class="description-product"></div>
+        </div>
+      </div>
+
+      <div class="product-artising" id="related-products">
+        <div class="product-artising-title">покупают вместе</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="app-footer"></div>
+
+<script src="/config.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/product.js"></script>
+</body>
+</html>

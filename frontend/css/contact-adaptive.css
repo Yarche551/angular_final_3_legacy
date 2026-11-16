@@ -1,0 +1,181 @@
+/*1024-1199*/
+@media screen and (max-width: 1199px) {
+    #contact-main {
+        padding: 0 20px;
+    }
+
+    #contact-container {
+        padding-bottom: 25px;
+    }
+
+    #contact .title-container-text {
+        padding-left: 40px;
+    }
+
+    .input-name {
+        width: 250px;
+    }
+
+    .input-mail {
+        width: 250px;
+    }
+}
+
+/*768-1023*/
+@media screen and (max-width: 1023px) {
+
+
+    #contact-block-img {
+        display: none;
+    }
+
+    #contact-block-social {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    #feedback-button {
+        display: none;
+    }
+
+    #feedback-container {
+        width: 610px;
+        margin: 0 auto;
+    }
+
+    .btn-feedback-container {
+        display: block;
+    }
+}
+
+/*579-767*/
+@media screen and (max-width: 767px) {
+    #contact-block-social {
+        height: 100%;
+    }
+
+    #contact-block-social-border {
+        display: flex;
+        flex-direction: column;
+        align-items: unset;
+        padding: 30px 20px;
+    }
+
+    #contact-messengers {
+        padding-top: 40px;
+    }
+
+    #contact-social {
+        padding-top: 40px;
+    }
+
+    #contact-flower-bg {
+        display: none;
+    }
+
+    #contact-block-social {
+        width: 340px;
+    }
+
+    .input-name {
+        width: 438px;
+    }
+
+    .input-mail {
+        width: 438px;
+    }
+
+
+    #contact-feedback {
+        width: 550px;
+        margin: 0 auto;
+    }
+
+
+    #feedback-container .gods-block-btn span {
+        display: block;
+    }
+}
+
+/*479-579*/
+@media screen and (max-width: 579px) {
+    .title-container-title {
+        font-size: 75px;
+    }
+
+    #contact .title-container-text {
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+    #contact-block-social-border {
+        padding: 30px 0 30px 20px;
+    }
+
+    #contact-phone div:nth-child(2) {
+        font-size: 25px;
+    }
+
+    #feedback-container {
+        width: 286px;
+        margin: 0 auto;
+    }
+
+    .input-name {
+        width: 255px;
+    }
+
+    .input-mail {
+        width: 255px;
+    }
+
+    #contact-feedback {
+        width: 335px;
+    }
+
+    #feedback-title {
+        width: 186px;
+        padding: 0 10px;
+        display: flex;
+        margin: -38px auto 20px auto;
+    }
+
+    #feedback-container-border {
+        padding: 20px 10px;
+    }
+}
+
+/*320-479*/
+@media screen and (max-width: 370px) {
+    .title-container-title {
+        font-size: 65px;
+    }
+
+    #contact-block-social-border {
+        padding: 20px 10px 20px 10px;
+    }
+
+    #contact-phone div:nth-child(2) {
+        font-size: 19px;
+    }
+
+    #contact-feedback {
+        width: 280px;
+    }
+
+    #feedback-container {
+        width: 232px;
+    }
+
+    .input-name {
+        width: 210px;
+    }
+
+    .input-mail {
+        width: 210px;
+    }
+    #contact .gods-block-btn{
+        font-size: 15px;
+    }
+}
+

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Каталог товаров - IZI BY IZI</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/common-adaptive.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/products-adaptive.css">
+</head>
+<body>
+<div id="app-header"></div>
+<div id="app-second-header"></div>
+<div id="sale-goods">
+    
+    <form id="sale-goods-container" action="/products" method="get">
+        <input type="hidden" name="category" id="filter-category" value="">
+        <input type="hidden" name="subcategory" id="filter-subcategory" value="">
+        <div id="gods-flower-left">
+            <img src="/images/product-flower-left.png" alt="">
+        </div>
+
+        <div id="goods-title"></div>
+
+        <div class="gods-filter">
+            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.77778 13.6663H12.2222V11.4441H7.77778V13.6663ZM0 0.333008L0 2.55523H20V0.333008L0 0.333008ZM3.33333 8.11079H16.6667V5.88856H3.33333V8.11079Z"
+                      fill="#55A265"/>
+            </svg>
+            <div class="gods-filter-title">Фильтр товаров</div>
+            <div class="gods-filter-arrow"><img src="/images/gods-filter-arrow.png" alt=""></div>
+        </div>
+        <div class="gods-filter" id="gods-filter-mobile">
+            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.77778 13.6663H12.2222V11.4441H7.77778V13.6663ZM0 0.333008L0 2.55523H20V0.333008L0 0.333008ZM3.33333 8.11079H16.6667V5.88856H3.33333V8.11079Z"
+                      fill="#55A265"/>
+            </svg>
+            <div class="gods-filter-title">Фильтры</div>
+            <div class="gods-filter-arrow"><img src="/images/gods-filter-arrow.png" alt=""></div>
+        </div>
+
+        <div class="filter-mobile" id="filter-mobile-main">
+            <div class="filter-mobile-title">
+                <div class="filter-mobile-close">
+                    <div>Закрыть</div>
+                    <div><img src="/images/filter-mobile-close.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-title-text">Фильтры</div>
+            </div>
+            <div class="filter-mobile-menu">
+
+                <div class="filter-mobile-menu-item filter-mobile-sort">
+                    <div>Сортировать</div>
+                    <div><img src="/images/filter-menu-arrow.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-menu-item filter-mobile-price">
+                    <div>Цена</div>
+                    <div><img src="/images/filter-menu-arrow.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-menu-item filter-mobile-brand">
+                    <div>Бренд</div>
+                    <div><img src="/images/filter-menu-arrow.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-menu-item filter-mobile-leather">
+                    <div>Тип кожи</div>
+                    <div><img src="/images/filter-menu-arrow.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-menu-item filter-mobile-volume">
+                    <div>Обьем</div>
+                    <div><img src="/images/filter-menu-arrow.png" alt=""></div>
+                </div>
+                <button type="submit" class="filter-mobile-button">Применить фильтры</button>
+
+            </div>
+        </div>
+
+        <div class="filter-mobile" id="filter-mobile-sort">
+            <div class="filter-mobile-title">
+                <div class="filter-mobile-close">
+                    <div>Закрыть</div>
+                    <div><img src="/images/filter-mobile-close.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-title-text">
+                    <div class="mobile-filter-white-arrow"><img src="/images/mobile-filter-white-arrow.png" alt="">
+                    </div>
+                    <div>Фильтры</div>
+                </div>
+            </div>
+            <div class="filter-mobile-menu filter-mobile-menu-sort">
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="m-popular"
+                           value="popular" >
+                    <label class="radio_label" for="m-popular"><span>По популярности</span></label>
+                </div>
+
+
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="m-priceIncrease"
+                           value="price_low" >
+                    <label class="radio_label" for="m-priceIncrease"><span>По возрастанию цены</span></label>
+                </div>
+
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="m-priceLow"
+                           value="price_high" >
+                    <label class="radio_label" for="m-priceLow"><span>По убыванию цены</span></label>
+                </div>
+
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="m-new"
+                           value="new" >
+                    <label class="radio_label" for="m-new"><span>По новинкам</span></label>
+                </div>
+
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="m-discount"
+                           value="discount" >
+                    <label class="radio_label" for="m-discount"><span>По скидкам</span></label>
+                </div>
+
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="m-bestseller"
+                           value="hit" >
+                    <label class="radio_label" for="m-bestseller"><span>По хитам продаж</span></label>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="filter-mobile" id="filter-mobile-price">
+            <div class="filter-mobile-title">
+                <div class="filter-mobile-close">
+                    <div>Закрыть</div>
+                    <div><img src="/images/filter-mobile-close.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-title-text">
+                    <div class="mobile-filter-white-arrow"><img src="/images/mobile-filter-white-arrow.png" alt="">
+                    </div>
+                    <div>Фильтры</div>
+                </div>
+            </div>
+            <div class="filter-mobile-menu filter-mobile-menu-price">
+
+                <div class="filter-pagination-price">
+
+                    <div class="filter-pagination-price-input">
+                        <input type="number" class="products-filter-trigger" id="low-price" placeholder="От"
+                               name="price_from"
+                               value="">
+                        <input type="number" class="products-filter-trigger" placeholder="До" id="height-price"
+                               name="price_to"
+                               value="">
+                    </div>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-discount"
+                           value="popular">
+                    <label class="radio_label" for="goods-discount"
+                           onClick="document.getElementById('low-price').value = '';document.getElementById('height-price').value = '';"><span>Только товары со скидкой</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-500"
+                           value="popular">
+                    <label class="radio_label" for="goods-500"
+                           onClick="document.getElementById('height-price').value = '500'"><span>До 500 руб.</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-1500"
+                           value="popular">
+                    <label class="radio_label" for="goods-1500"
+                           onClick="document.getElementById('height-price').value = '1500'"><span>До 1500 руб.</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-4500"
+                           value="popular">
+                    <label class="radio_label" for="goods-4500"
+                           onClick="document.getElementById('height-price').value = '4500'"><span>До 4500 руб.</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-5000"
+                           value="popular">
+                    <label class="radio_label" for="goods-5000"
+                           onClick="document.getElementById('low-price').value = '5000';document.getElementById('height-price').value = '';"><span>От 5000 руб.</span></label>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-mobile" id="filter-mobile-brand">
+            <div class="filter-mobile-title">
+                <div class="filter-mobile-close">
+                    <div>Закрыть</div>
+                    <div><img src="/images/filter-mobile-close.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-title-text">
+                    <div class="mobile-filter-white-arrow"><img src="/images/mobile-filter-white-arrow.png" alt="">
+                    </div>
+                    <div>Фильтры</div>
+                </div>
+            </div>
+            <div class="filter-mobile-menu filter-mobile-menu-brand">
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="brand" type="radio" id="BrandAll"
+                           value="" checked>
+                    <label class="radio_label" for="BrandAll"><span>Все</span></label>
+                </div>
+                <div id="mobile-brands-list"></div>
+            </div>
+
+
+        </div>
+
+        <div class="filter-mobile" id="filter-mobile-leather">
+            <div class="filter-mobile-title">
+                <div class="filter-mobile-close">
+                    <div>Закрыть</div>
+                    <div><img src="/images/filter-mobile-close.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-title-text">
+                    <div class="mobile-filter-white-arrow"><img src="/images/mobile-filter-white-arrow.png" alt="">
+                    </div>
+                    <div>Фильтры</div>
+                </div>
+            </div>
+            <div class="filter-mobile-menu filter-mobile-menu-leather">
+
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="skin" type="radio" id="allLeather"
+                           value="">
+                    <label class="radio_label" for="allLeather"><span>Все</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="skin" type="radio" id="oilyLeather"
+                           value="fat" >
+                    <label class="radio_label" for="oilyLeather"><span>Жирная</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="skin" type="radio" id="problemLeather"
+                           value="problem" >
+                    <label class="radio_label" for="problemLeather"><span>Проблемная</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="skin" type="radio" id="combinedLeather"
+                           value="combo" >
+                    <label class="radio_label" for="combinedLeather"><span>Комбинированная</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="skin" type="radio" id="dryLeather"
+                           value="dry" >
+                    <label class="radio_label" for="dryLeather"><span>Сухая</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="skin" type="radio" id="sensitiveLeather"
+                           value="sensitive" >
+                    <label class="radio_label" for="sensitiveLeather"><span>Чувствительная</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio_input products-filter-trigger" name="skin" type="radio" id="anyLeather"
+                           value="any" >
+                    <label class="radio_label" for="anyLeather"><span>Любая</span></label>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="filter-mobile" id="filter-mobile-volume">
+            <div class="filter-mobile-title">
+                <div class="filter-mobile-close">
+                    <div>Закрыть</div>
+                    <div><img src="/images/filter-mobile-close.png" alt=""></div>
+                </div>
+                <div class="filter-mobile-title-text">
+                    <div class="mobile-filter-white-arrow"><img src="/images/mobile-filter-white-arrow.png" alt="">
+                    </div>
+                    <div>Фильтры</div>
+                </div>
+            </div>
+            <div class="filter-mobile-menu filter-mobile-menu-volume">
+
+                <div class="filter-pagination-price">
+                    <div class="filter-pagination-title">
+                        Укажите обьем
+                    </div>
+                    <div class="filter-pagination-price-input">
+                        <input type="number" class="products-filter-trigger" placeholder="От" name="size_from"
+                               value="">
+                        <input type="number" class="products-filter-trigger" placeholder="До" name="size_to"
+                               value="">
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div id="gods-main-filter" >
+            <div id="gods-filter-menu">
+                <div id="gods-filter-menu-title">Сортировать</div>
+                <div id="filter-menu-items">
+
+                    <div class="radio">
+                        <input class="radio_input products-filter-trigger" name="sort" type="radio" id="popular"
+                               value="popular" >
+                        <label class="radio_label" for="popular"><span>По популярности</span></label>
+                    </div>
+
+                    <div class="radio">
+                        <input class="radio_input products-filter-trigger" name="sort" type="radio" id="priceIncrease"
+                               value="price_low" >
+                        <label class="radio_label" for="priceIncrease"><span>По возрастанию цены</span></label>
+                    </div>
+
+                    <div class="radio">
+                        <input class="radio_input products-filter-trigger" name="sort" type="radio" id="priceLow"
+                               value="price_high" >
+                        <label class="radio_label" for="priceLow"><span>По убыванию цены</span></label>
+                    </div>
+
+                    <div class="radio">
+                        <input class="radio_input products-filter-trigger" name="sort" type="radio" id="new"
+                               value="new" >
+                        <label class="radio_label" for="new"><span>По новинкам</span></label>
+                    </div>
+
+                    <div class="radio">
+                        <input class="radio_input products-filter-trigger" name="sort" type="radio" id="discount"
+                               value="discount" >
+                        <label class="radio_label" for="discount"><span>По скидкам</span></label>
+                    </div>
+
+                    <div class="radio">
+                        <input class="radio_input products-filter-trigger" name="sort" type="radio" id="bestseller"
+                               value="hit" >
+                        <label class="radio_label" for="bestseller"><span>По хитам продаж</span></label>
+                    </div>
+
+                </div>
+            </div>
+            <div id="gods-filter-pagination">
+                <div id="gods-filter-pagination-container">
+
+                    <div class="filter-pagination-price filter-dekstop-menu-volume">
+                        <div class="filter-pagination-title">
+                            Цена
+                        </div>
+                        <div class="filter-pagination-price-input">
+                            <input type="number" class="products-filter-trigger" placeholder="От" name="price_from"
+                                   value="">
+                            <input type="number" class="products-filter-trigger" placeholder="До" name="price_to"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="filter-pagination-brand filter-dekstop-menu-brand">
+                        <div class="filter-pagination-title">
+                            Бренд
+                        </div>
+
+                        <div class="filter-pagination-select">
+                            <select name="brand" id="brand-select" class="products-filter-trigger">
+                                <option value="">Все</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-pagination-skin" id="filter-dekstop-leather">
+                        <div class="filter-pagination-title">
+                            Тип кожи
+                        </div>
+
+                        <div class="filter-pagination-select">
+                            <select name="skin" id="skin-select" class="products-filter-trigger">
+                                <option value="">Все</option>
+                                <option value="fat" >Жирная</option>
+                                <option value="problem" >Проблемная</option>
+                                <option value="combo" >Комбинированная</option>
+                                <option value="dry" >Сухая</option>
+                                <option value="sensitive">Чувствительная</option>
+                                <option value="any">Любой</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-pagination-price" id="filter-size-dekstop">
+                        <div class="filter-pagination-title">
+                            Обьем
+                        </div>
+                        <div class="filter-pagination-price-input">
+                            <input type="number" class="products-filter-trigger" placeholder="От" name="size_from"
+                                   value="">
+                            <input type="number" class="products-filter-trigger" placeholder="До" name="size_to"
+                                   value="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="sale-goods-main-container">
+        <div id="gods-flower-right">
+            <img src="/images/product-flower-rightt.png" alt="">
+        </div>
+        <div id="gods-flower-bottom">
+            <img src="/images/product-flower-bottomm.png" alt="">
+        </div>
+    </div>
+    <div id="products-pagination"></div>
+    
+</div>
+<div id="app-footer"></div>
+<script src="/config.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/products.js"></script>
+</body>
+</html>

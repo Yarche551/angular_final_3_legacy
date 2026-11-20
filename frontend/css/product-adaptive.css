@@ -1,14 +1,9 @@
-@media screen and (min-width: 1921px) {
-
-}
-
 @media screen and (max-width: 1229px) {
     #product {
         padding: 10px;
     }
 }
 
-/*1024-1199*/
 @media screen and (max-width: 1199px) {
     #product {
         padding: 20px;
@@ -51,7 +46,6 @@
     }
 }
 
-/*768-1023*/
 @media screen and (max-width: 1023px) {
     .gods-block-main-price {
         display: block;
@@ -73,7 +67,6 @@
     }
 }
 
-/*579-767*/
 @media screen and (max-width: 767px) {
     #product .gods-block-btn span {
         display: block;
@@ -98,7 +91,6 @@
     }
 }
 
-/*479-579*/
 @media screen and (max-width: 579px) {
     .product-product-specification {
         display: flex;
@@ -175,7 +167,6 @@
     }
 }
 
-/*320-479*/
 @media screen and (max-width: 479px) {
     #product {
         padding: 15px;
@@ -199,7 +190,7 @@
     .product-specification-img {
         width: 300px;
         height: 260px;
-        top: calc(10% - -41px);
+        top: 150px;
     }
 
     .product-description-quantity {

@@ -1,7 +1,3 @@
-@media screen and (min-width: 1921px) {
-
-}
-
 @media screen and (max-width: 1229px) {
     #sale-goods-container {
         padding: 20px;
@@ -10,7 +6,6 @@
 
 }
 
-/*1024-1199*/
 @media screen and (max-width: 1199px) {
     #gods-filter {
         max-width: 880px;
@@ -66,21 +61,6 @@
     }
 }
 
-/*768-1023*/
-@media screen and (max-width: 1023px) {
-
-}
-
-/*579-767*/
-@media screen and (max-width: 767px) {
-
-}
-
-@media screen and (max-width: 537px) {
-
-}
-
-/*479-579*/
 
 @media screen and (max-width: 579px) {
     .gods-filter {
@@ -96,11 +76,6 @@
     }
 }
 
-
-/*320-479*/
-@media screen and (max-width: 479px) {
-
-}
 
 @media screen and (max-width: 365px) {
     .filter-mobile-menu-price input {

@@ -34,24 +34,22 @@
       const count = Number($('#product-count').val()) || 1;
       const image = $('#product-image');
       flyToCart(image);
-      IziApi.post('/cart/add', { id: id, count: count }).done(function (res) {
-        if (res && res.hasOwnProperty('count')) {
-          $('#count-cart').text(res.count);
-        }
-      });
+      mutateCart('add', { id: id, count: count });
     });
   }
 
   IziPages.product = {
     init: function () {
       bindOnce();
+      const $product = $('#product-container');
       const url = IziApi.productSlugFromLocation();
       if (!url) {
-        $('#product-container').html('<p style="padding:40px;">Товар не найден</p>');
+        $product.html('<p class="page-message">Товар не найден. <a href="/products">Перейти в каталог</a></p>');
         return;
       }
 
       IziApi.get('/products/' + encodeURIComponent(url)).done(function (res) {
+        if (!$product[0].isConnected) return;
         const p = res.product;
         document.title = p.name;
 
@@ -98,8 +96,10 @@
             </a>`
           );
         });
-      }).fail(function () {
-        $('#product-container').html('<p style="padding:40px;">Товар не найден</p>');
+      }).fail(function (xhr) {
+        $product.html(xhr.status === 404
+          ? '<p class="page-message">Товар не найден. <a href="/products">Перейти в каталог</a></p>'
+          : '<p class="page-message">Не удалось загрузить товар. Обновите страницу и попробуйте снова.</p>');
       });
     },
     destroy: function () {},

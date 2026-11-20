@@ -1,31 +1,41 @@
-function updateCartPositions(callback) {
-  IziApi.get('/cart').done(function (res) {
-    const basketContainer = $('#basket-positions');
-    basketContainer.empty();
-    if (res && res.products && res.products.length > 0) {
-      res.products.forEach(function (item) {
-        const element =
-          `<div class="basket-block" data-id="${item.id}">
-            <div class="basket-block-img">
-              <img src="${IziApi.productImage(item.image)}" alt="">
-            </div>
-            <div class="basket-block-descr">
-              <div class="basket-close"><img src="/images/menu-close.png" alt=""></div>
-              <div class="basket-block-text">${IziApi.escapeHtml(item.name)}</div>
-              <div class="basket-block-characters">
-                <div>${item.count} шт.</div>
-                <div>${item.total} руб.</div>
-              </div>
-            </div>
-          </div>`;
-        basketContainer.append(element);
-      });
-    }
-    $('#basket-price-top').text(res.total);
-    $('#basket-count-top').text(res.count);
-    $('#count-cart').text(res.count);
-    if (callback) callback();
-  });
+let basketRequest;
+let cartMutation = $.Deferred().resolve().promise();
+
+function mutateCart(action, data) {
+  function send() {
+    return IziApi.post('/cart/' + action, data).done(updateCartSummary);
+  }
+
+  cartMutation = cartMutation.then(send, send);
+  return cartMutation;
+}
+
+function updateCartSummary(cart) {
+  $('#count-cart, #basket-count-top').text(cart.count);
+  $('#basket-price-top').text(cart.total);
+}
+
+function renderBasket(cart) {
+  $('#basket-positions').html(cart.positions.map(function (item) {
+    return `<div class="basket-block" data-id="${item.id}">
+      <div class="basket-block-img">
+        <img src="${IziApi.productImage(item.image)}" alt="">
+      </div>
+      <div class="basket-block-descr">
+        <div class="basket-close"><img src="/images/menu-close.png" alt=""></div>
+        <div class="basket-block-text">${IziApi.escapeHtml(item.name)}</div>
+        <div class="basket-block-characters">
+          <div>${item.count} шт.</div>
+          <div>${item.total} руб.</div>
+        </div>
+      </div>
+    </div>`;
+  }).join(''));
+}
+
+function closeBasket() {
+  if (basketRequest) basketRequest.abort();
+  $('#basket-container').stop(true, true).hide();
 }
 
 function flyToCart($image) {
@@ -89,8 +99,7 @@ $(document).ready(function () {
   });
 
   $(document).mouseup(function (e) {
-    const div = $('#basket-container');
-    if (!div.is(e.target) && div.has(e.target).length === 0) div.fadeOut();
+    if (!$(e.target).closest('#basket-container, .open-basket').length) closeBasket();
     const $dropdown = $('#dropdown-search');
     const $searchBox = $('#goods-container-search');
     if (!$dropdown.is(e.target) && $dropdown.has(e.target).length === 0 &&
@@ -104,21 +113,30 @@ $(document).ready(function () {
   $(document).on('click', '#basket-container .basket-close', function (event) {
     event.stopPropagation();
     const block = $(event.target).closest('.basket-block');
-    IziApi.post('/cart/remove', { id: block.data('id') }).done(function (res) {
-      $('#count-cart').text(res.count);
-      if (res.count === 0) $('#basket-container').fadeOut();
-      updateCartPositions();
+    mutateCart('remove', { id: block.data('id') }).done(function (cart) {
+      renderBasket(cart);
+      if (!cart.count) closeBasket();
     });
   });
 
   $(document).on('click', '.open-basket', function (e) {
     e.preventDefault();
-    if (location.pathname.indexOf('/cart') > -1 || $('#count-cart').text() == 0) {
-      if ($('#count-cart').text() != 0) navigateTo('/cart');
+    const $basket = $('#basket-container');
+    if (IziRoutes.match(location.pathname).name === 'cart') return;
+    if (!Number($('#count-cart').text())) {
+      navigateTo('/cart');
       return;
     }
-    updateCartPositions(function () {
-      $('#basket-container').fadeToggle();
+    if ($basket.is(':visible')) {
+      closeBasket();
+      return;
+    }
+
+    if (basketRequest) basketRequest.abort();
+    basketRequest = IziApi.get('/cart').done(function (cart) {
+      updateCartSummary(cart);
+      renderBasket(cart);
+      if (cart.count) $basket.show();
     });
   });
 
@@ -189,10 +207,6 @@ $(document).ready(function () {
       alert('Произошла ошибка при добавлении в корзину.');
       return;
     }
-    IziApi.post('/cart/add', { id: id, count: 1 }).done(function (res) {
-      if (res && res.hasOwnProperty('count')) {
-        $('#count-cart').text(res.count);
-      }
-    });
+    mutateCart('add', { id: id, count: 1 });
   });
 });

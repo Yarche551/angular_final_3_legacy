@@ -188,17 +188,14 @@ input[type="number"] {
     font-size: 25px;
     line-height: 30px;
     color: #828282;
-    border-bottom: 2px solid #C4C4C4;;
+    border-bottom: 4px solid #C4C4C4;
     padding: 14px 50px;
     cursor: pointer;
 }
 
 .category-description.active {
     color: #68A95F;
-    border-bottom: 4px solid #68A95F;
-    /*  box-shadow: 0 5px 0 0 #68A95F;*/
-    /*    padding: 14px;
-        height: 100%;*/
+    border-color: #68A95F;
 }
 
 .description-product {
@@ -206,10 +203,11 @@ input[type="number"] {
     font-size: 14px;
     line-height: 17px;
     padding: 20px 20px 0 0;
+    overflow-wrap: anywhere;
 }
 
 .product-artising {
-    width: 243px;
+    flex: 0 0 243px;
     background: #FFFFFF;
     box-shadow: 0 8px 20px rgba(155, 155, 155, 0.25);
     border-radius: 10px;
@@ -271,6 +269,8 @@ input[type="number"] {
 }
 
 .product-container-description {
+    flex: 1;
+    min-width: 0;
     max-width: 885px;
 }
 

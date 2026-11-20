@@ -1,6 +1,8 @@
 (function (window, $) {
   window.IziPages = window.IziPages || {};
   let bound = false;
+  let productsRequest;
+  let brandsRequest;
 
   function collectFilterParams() {
     const current = IziApi.catalogFromLocation();
@@ -12,25 +14,21 @@
       subcategory: current.subcategory,
     };
 
-    const seen = {};
     formData.forEach(function (value, key) {
-      if (key === 'category' || key === 'subcategory') return;
-      if (seen[key] && !value) return;
-      seen[key] = true;
+      if (['category', 'subcategory', 'price_preset'].includes(key)) return;
       if (value !== '' && value != null) {
         if (key === 'sort' && value === 'popular') return;
         next[key] = value;
       }
     });
 
+    if (formData.get('price_preset') === 'discount' ||
+        ($(window).width() > 579 && current.discount_only)) next.discount_only = '1';
     return next;
   }
 
-  function applyFilters(page) {
-    const next = collectFilterParams();
-    if (page && page > 1) next.page = page;
-    else delete next.page;
-    const url = IziApi.hrefProducts(next, 'gods-main-filter');
+  function applyFilters() {
+    const url = IziApi.hrefProducts(collectFilterParams(), $(window).width() > 579 ? 'gods-main-filter' : '');
     if (window.IziRouter) IziRouter.go(url);
     else location.href = url;
   }
@@ -40,6 +38,14 @@
     const sort = params.sort || 'popular';
     $('input[name="sort"]').each(function () {
       $(this).prop('checked', $(this).val() === sort);
+    });
+
+    const preset = params.discount_only ? 'discount'
+      : params.price_from === '5000' && !params.price_to ? '5000+'
+      : !params.price_from && ['500', '1500', '4500'].includes(params.price_to) ? params.price_to
+      : '';
+    $('input[name="price_preset"]').each(function () {
+      $(this).prop('checked', $(this).val() === preset);
     });
 
     ['price_from', 'price_to', 'size_from', 'size_to'].forEach(function (k) {
@@ -60,12 +66,6 @@
 
     $('#filter-category').val(params.category || '');
     $('#filter-subcategory').val(params.subcategory || '');
-
-    if (params.sort || params.brand || params.skin ||
-        params.price_from || params.price_to ||
-        params.size_from || params.size_to) {
-      $('#gods-main-filter').show();
-    }
   }
 
   function renderBreadcrumb(res) {
@@ -75,7 +75,7 @@
     let html = '<a href="/">Главная</a> / ';
     if (category) {
       const active = res.subcategory ? '' : 'active';
-      html += `<a href="${IziApi.hrefProducts({ category: category })}" class="${active}"> ${labels[category] || category}</a>`;
+      html += `<a href="${IziApi.hrefProducts({ category: category })}" class="${active}"> ${IziApi.escapeHtml(labels[category] || category)}</a>`;
     } else if (params.brand) {
       html += '<a href="javascript:void(0);" class="active"> Бренд</a>';
     } else {
@@ -95,6 +95,7 @@
       category: params.category || undefined,
       subcategory: params.subcategory || undefined,
       sort: params.sort || undefined,
+      discount_only: params.discount_only || undefined,
       price_from: params.price_from || undefined,
       price_to: params.price_to || undefined,
       size_from: params.size_from || undefined,
@@ -103,32 +104,34 @@
       skin: params.skin || undefined,
     };
 
-    IziApi.get('/products', data).done(function (res) {
-      renderBreadcrumb(res);
-      const $list = $('#sale-goods-main-container');
-      let flowers = '';
-      if (!$list.find('#gods-flower-right').length) {
-        flowers = `<div id="gods-flower-right"><img src="/images/product-flower-rightt.png" alt=""></div>
-        <div id="gods-flower-bottom"><img src="/images/product-flower-bottomm.png" alt=""></div>`;
-      } else {
-        flowers = $list.find('#gods-flower-right')[0].outerHTML + $list.find('#gods-flower-bottom')[0].outerHTML;
-      }
-      $list.empty().append(flowers);
+    const $list = $('#sale-goods-main-container');
+    const $pagination = $('#products-pagination');
+    if (productsRequest) productsRequest.abort();
+    $list.attr('aria-busy', 'true');
 
-      if (!res.products.length) {
-        $list.append('<div id="no-products">Товары по выбранным параметрам отсутствуют. Попробуйте изменить фильтр</div>');
-        $('#products-pagination').empty();
-        return;
-      }
-
-      res.products.forEach(function (p) {
-        $list.append(IziApi.renderProductCard(p));
+    productsRequest = IziApi.get('/products', data)
+      .done(function (res) {
+        renderBreadcrumb(res);
+        replaceResults(res.products.length
+          ? res.products.map(IziApi.renderProductCard).join('')
+          : '<div id="no-products">Товары по выбранным параметрам отсутствуют. Попробуйте изменить фильтр</div>');
+        $pagination.html(IziApi.renderPagination(res.pagination, function (page) {
+          return IziApi.hrefProducts(Object.assign({}, params, { page: page }));
+        }));
+      })
+      .fail(function (_, status) {
+        if (status === 'abort') return;
+        replaceResults('<div id="no-products">Не удалось загрузить товары. Попробуйте ещё раз.</div>');
+        $pagination.empty();
+      })
+      .always(function () {
+        $list.removeAttr('aria-busy');
       });
-      $('#products-pagination').html(IziApi.renderPagination(res.pagination, function (page) {
-        const next = Object.assign({}, IziApi.catalogFromLocation(), { page: page });
-        return IziApi.hrefProducts(next);
-      }));
-    });
+
+    function replaceResults(html) {
+      $list.children('.sale-goods-block, #no-products').remove();
+      $list.append(html);
+    }
   }
 
   function fillBrands(brands) {
@@ -193,33 +196,33 @@
       $('#filter-mobile-main').css('z-index', 9);
     });
 
+    $(document).on('change', '[name="price_preset"]', function () {
+      const value = $(this).val();
+      $('#low-price').val(value === '5000+' ? '5000' : '');
+      $('#height-price').val(['discount', '5000+'].includes(value) ? '' : value);
+    });
+
+    $(document).on('input', '#low-price, #height-price', function () {
+      $('input[name="price_preset"]').prop('checked', false);
+    });
+
     $(document).on('change', '#sale-goods-container .products-filter-trigger', function () {
       if ($(window).width() > 579) {
-        applyFilters(1);
+        applyFilters();
       }
     });
 
     $(document).on('submit', '#sale-goods-container', function (e) {
       e.preventDefault();
-      applyFilters(1);
-    });
-
-    $(document).on('click', '.filter-mobile-button', function (e) {
-      e.preventDefault();
-      applyFilters(1);
+      $('.filter-mobile').hide();
+      applyFilters();
     });
   }
 
   IziPages.products = {
     init: function () {
       bindOnce();
-      const params = IziApi.catalogFromLocation();
       const w = $(window).width();
-
-      $('#sale-goods-container').attr('action', IziApi.hrefProducts({
-        category: params.category,
-        subcategory: params.subcategory,
-      }));
 
       if (w <= 1200) {
         $('#gods-main-filter').css({ display: 'flex', margin: '0 auto' });
@@ -232,21 +235,29 @@
         $('#filter-size-dekstop').remove();
         $('#gods-main-filter').hide();
       } else {
-        $('.filter-mobile-menu-sort').remove();
-        $('.filter-mobile-menu-volume').remove();
-        $('.filter-mobile-menu-brand').remove();
-        $('#filter-mobile-leather').remove();
+        $('.filter-mobile').remove();
       }
 
-      IziApi.get('/brands/all').done(function (res) {
+      const params = IziApi.catalogFromLocation();
+      if (w > 1200 && (params.sort || params.brand || params.skin ||
+          params.price_from || params.price_to || params.size_from || params.size_to || params.discount_only)) {
+        $('#gods-main-filter').show();
+        $('.gods-filter-arrow').addClass('transform');
+      }
+
+      IziPages.products.update();
+      brandsRequest = IziApi.get('/brands/all').done(function (res) {
         fillBrands(res.brands || []);
         syncFiltersFromUrl();
-        loadProducts();
-      }).fail(function () {
-        syncFiltersFromUrl();
-        loadProducts();
       });
     },
-    destroy: function () {},
+    update: function () {
+      syncFiltersFromUrl();
+      loadProducts();
+    },
+    destroy: function () {
+      if (productsRequest) productsRequest.abort();
+      if (brandsRequest) brandsRequest.abort();
+    },
   };
 })(window, jQuery);

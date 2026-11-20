@@ -2,9 +2,6 @@
     font-family: "MullerBold", sans-serif;
 }
 
-/*.title-container .title-container-text {*/
-/*    width: 180px;*/
-/*}*/
 
 .gods-filter {
     display: flex;
@@ -21,10 +18,6 @@
     left: 6px;
 }
 
-    /*.gods-filter:checked {
-        position: absolute;
-
-    }*/
 
 #gods-filter-mobile {
     display: none;

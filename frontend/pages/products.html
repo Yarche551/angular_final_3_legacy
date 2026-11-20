@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Каталог товаров - IZI BY IZI</title>
-  <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/jquery-ui.css">
-  <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/common-adaptive.css">
-  <link rel="stylesheet" href="/css/products.css">
-  <link rel="stylesheet" href="/css/products-adaptive.css">
-</head>
-<body>
-<div id="app-header"></div>
 <div id="app-second-header"></div>
 <div id="sale-goods">
     
@@ -157,34 +142,24 @@
                     </div>
                 </div>
                 <div class="radio">
-                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-discount"
-                           value="popular">
-                    <label class="radio_label" for="goods-discount"
-                           onClick="document.getElementById('low-price').value = '';document.getElementById('height-price').value = '';"><span>Только товары со скидкой</span></label>
+                    <input class="radio_input products-filter-trigger" name="price_preset" type="radio" id="goods-discount" value="discount">
+                    <label class="radio_label" for="goods-discount"><span>Только товары со скидкой</span></label>
                 </div>
                 <div class="radio">
-                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-500"
-                           value="popular">
-                    <label class="radio_label" for="goods-500"
-                           onClick="document.getElementById('height-price').value = '500'"><span>До 500 руб.</span></label>
+                    <input class="radio_input products-filter-trigger" name="price_preset" type="radio" id="goods-500" value="500">
+                    <label class="radio_label" for="goods-500"><span>До 500 руб.</span></label>
                 </div>
                 <div class="radio">
-                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-1500"
-                           value="popular">
-                    <label class="radio_label" for="goods-1500"
-                           onClick="document.getElementById('height-price').value = '1500'"><span>До 1500 руб.</span></label>
+                    <input class="radio_input products-filter-trigger" name="price_preset" type="radio" id="goods-1500" value="1500">
+                    <label class="radio_label" for="goods-1500"><span>До 1500 руб.</span></label>
                 </div>
                 <div class="radio">
-                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-4500"
-                           value="popular">
-                    <label class="radio_label" for="goods-4500"
-                           onClick="document.getElementById('height-price').value = '4500'"><span>До 4500 руб.</span></label>
+                    <input class="radio_input products-filter-trigger" name="price_preset" type="radio" id="goods-4500" value="4500">
+                    <label class="radio_label" for="goods-4500"><span>До 4500 руб.</span></label>
                 </div>
                 <div class="radio">
-                    <input class="radio_input products-filter-trigger" name="sort" type="radio" id="goods-5000"
-                           value="popular">
-                    <label class="radio_label" for="goods-5000"
-                           onClick="document.getElementById('low-price').value = '5000';document.getElementById('height-price').value = '';"><span>От 5000 руб.</span></label>
+                    <input class="radio_input products-filter-trigger" name="price_preset" type="radio" id="goods-5000" value="5000+">
+                    <label class="radio_label" for="goods-5000"><span>От 5000 руб.</span></label>
 
                 </div>
             </div>
@@ -414,13 +389,3 @@
     <div id="products-pagination"></div>
     
 </div>
-<div id="app-footer"></div>
-<script src="/config.js"></script>
-<script src="/js/jquery-3.4.1.min.js"></script>
-<script src="/js/plugins/jQueryUI/jquery-ui.min.js"></script>
-<script src="/js/api.js"></script>
-<script src="/js/layout.js"></script>
-<script src="/js/common.js"></script>
-<script src="/js/products.js"></script>
-</body>
-</html>

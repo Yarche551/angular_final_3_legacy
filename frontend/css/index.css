@@ -46,6 +46,10 @@
     margin: 40px;
 }
 
+#banner-slider:not(.slick-initialized) > :not(:first-child) {
+    display: none;
+}
+
 #banner-slider img {
     width: 100%;
 

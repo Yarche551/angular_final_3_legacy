@@ -1,7 +1,3 @@
-/**
- * IZI BY IZI — REST API (Express + MongoDB/Mongoose)
- * Ported business logic from Yii2. Payment & delivery are stubbed.
- */
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
@@ -277,6 +273,7 @@ async function createApp() {
       if (sizeTo != null && !Number.isNaN(sizeTo)) {
         filter.size = Object.assign(filter.size || {}, { $lte: sizeTo });
       }
+      if (req.query.discount_only === '1') filter.old_price = { $gt: 0 };
       if (brand) filter.brand_id = brand;
       if (skin) filter.skin = skin;
 
@@ -457,8 +454,7 @@ async function createApp() {
       delete cart[id];
       req.session.cart = cart;
 
-      const snap = await getCartSnapshot(req);
-      res.json({ count: snap.count, total: snap.total });
+      res.json(await getCartSnapshot(req));
     } catch (e) {
       console.error(e);
       sendError(res, 500, 'Ошибка удаления из корзины');

@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Корзина - IZI BY IZI</title>
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/jquery-ui.css">
-  <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/common-adaptive.css">
-  <link rel="stylesheet" href="/css/cart.css">
-  <link rel="stylesheet" href="/css/cart-adaptive.css">
-</head>
-<body>
-<div id="app-header"></div>
 <div id="app-second-header"></div>
 
 <div id="cart-container-flower">
@@ -22,7 +7,8 @@
       <div class="title-container-title">Товары</div>
       <div class="title-container-text">в вашей корзине</div>
     </div>
-    <div id="cart-container">
+    <p id="cart-empty" class="page-message" hidden>В корзине пока нет товаров. <a href="/products">Перейти в каталог</a></p>
+    <div id="cart-container" style="display: none">
       <div id="cart-block-gods"></div>
       <div id="cart-block-btn">
         <div id="cart-btn-img">
@@ -48,15 +34,3 @@
     </div>
   </div>
 </div>
-
-<div id="app-footer"></div>
-
-<script src="/config.js"></script>
-<script src="/js/jquery-3.4.1.min.js"></script>
-<script src="/js/plugins/jQueryUI/jquery-ui.min.js"></script>
-<script src="/js/api.js"></script>
-<script src="/js/layout.js"></script>
-<script src="/js/common.js"></script>
-<script src="/js/cart.js"></script>
-</body>
-</html>

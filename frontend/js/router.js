@@ -1,5 +1,6 @@
 (function (window, $) {
   const TITLES = {
+    notFound: 'Страница не найдена - IZI BY IZI',
     home: 'Интернет-магазин косметики - IZI BY IZI',
     products: 'Каталог товаров - IZI BY IZI',
     product: 'Товар - IZI BY IZI',
@@ -16,47 +17,12 @@
     'delivery-conditions': 'Условия доставки - IZI BY IZI',
   };
 
-  const ROUTES = [
-    { name: 'home', re: /^\/$/, tpl: '/pages/home.html' },
-    { name: 'products', re: /^\/products(?:\/[^/]+)?(?:\/[^/]+)?$/, tpl: '/products.html' },
-    { name: 'product', re: /^\/product(?:\/[^/]+)?$/, tpl: '/product.html' },
-    { name: 'brands', re: /^\/brands$/, tpl: '/brands.html' },
-    { name: 'search', re: /^\/search$/, tpl: '/search.html' },
-    { name: 'cart', re: /^\/cart$/, tpl: '/cart.html' },
-    { name: 'order', re: /^\/order$/, tpl: '/order.html' },
-    { name: 'contact', re: /^\/contact$/, tpl: '/contact.html' },
-    { name: 'about', re: /^\/about$/, tpl: '/about.html' },
-    { name: 'delivery', re: /^\/delivery$/, tpl: '/delivery.html' },
-    { name: 'thanks', re: /^\/thanks$/, tpl: '/thanks.html' },
-    { name: 'privacy', re: /^\/privacy-policy$/, tpl: '/privacy-policy.html' },
-    { name: 'agreement', re: /^\/user-agreement$/, tpl: '/user-agreement.html' },
-    { name: 'delivery-conditions', re: /^\/delivery-conditions$/, tpl: '/delivery-conditions.html' },
-  ];
-
   const tplCache = {};
   const LOADER_MIN_MS = 500;
   let currentName = null;
   let started = false;
+  let renderVersion = 0;
   let bootLoaderHidden = false;
-
-  function pathOnly() {
-    return location.pathname.replace(/\.html$/, '') || '/';
-  }
-
-  function matchRoute() {
-    const path = pathOnly() === '' ? '/' : pathOnly();
-    for (let i = 0; i < ROUTES.length; i++) {
-      if (ROUTES[i].re.test(path)) return ROUTES[i];
-    }
-    return ROUTES[0];
-  }
-
-  function extractContent(html) {
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    const $body = $(doc.body);
-    $body.find('#app-header, #app-footer, script, link[rel="stylesheet"]').remove();
-    return $body.html();
-  }
 
   function getTemplate(url) {
     if (tplCache[url]) {
@@ -64,9 +30,8 @@
       return $.Deferred().resolve(tplCache[url]).promise();
     }
     tplCache[url] = $.ajax({ url: url, dataType: 'text', cache: false }).then(function (html) {
-      const content = extractContent(html);
-      tplCache[url] = content;
-      return content;
+      tplCache[url] = html;
+      return html;
     }, function (err) {
       delete tplCache[url];
       return $.Deferred().reject(err).promise();
@@ -104,34 +69,44 @@
   }
 
   function render() {
-    const route = matchRoute();
+    const route = IziRoutes.match(location.pathname);
+    const version = ++renderVersion;
+    const page = window.IziPages[route.name];
+    const category = route.name === 'products' ? IziApi.catalogFromLocation().category : null;
+    const $content = $('#app-page');
+
+    closeBasket();
+    $('#dropdown-search').stop(true, true).empty().hide();
+    document.title = TITLES[route.name];
+
+    if (currentName === route.name && page && page.update) {
+      IziLayout.mountSecondHeader(category);
+      page.update();
+      scrollToHash();
+      return;
+    }
+
     destroyCurrent();
-    document.title = TITLES[route.name] || TITLES.home;
+    currentName = null;
 
     return getTemplate(route.tpl).then(function (html) {
-      $('#dropdown-search').empty().hide();
-      $('#app-page').html(html);
-      const cat = (route.name === 'products') ? (IziApi.catalogFromLocation().category || null) : null;
-      IziLayout.mountSecondHeader(cat);
+      if (version !== renderVersion) return;
+      $content.html(html);
+      IziLayout.mountSecondHeader(category);
       currentName = route.name;
-      if (window.IziPages && IziPages[route.name] && IziPages[route.name].init) {
-        IziPages[route.name].init();
-      }
+      if (page && page.init) page.init();
       scrollToHash();
-    }).fail(function () {
-      $('#app-page').html('<p style="padding:40px;text-align:center;">Страница не найдена</p>');
+    }, function () {
+      if (version !== renderVersion) return;
+      $content.html('<p class="page-message">Не удалось загрузить страницу. Обновите её и попробуйте снова.</p>');
     });
   }
 
   function go(url) {
     if (!url) return;
-    if (url.charAt(0) !== '/' && url.indexOf('http') !== 0) {
-      url = '/' + url;
-    }
-    const abs = url.indexOf('http') === 0 ? url : (location.origin + url);
-    const next = new URL(abs, location.origin);
+    const next = new URL(url, location.origin);
     if (next.origin !== location.origin) {
-      location.href = url;
+      location.href = next.href;
       return;
     }
     const target = next.pathname + next.search + next.hash;
@@ -147,12 +122,11 @@
   function isInternalLink(anchor) {
     if (!anchor || anchor.target === '_blank' || anchor.hasAttribute('download')) return false;
     const href = anchor.getAttribute('href');
-    if (!href || href === '#' || href.indexOf('javascript:') === 0) return false;
-    if (/^(mailto:|tel:|tg:|viber:)/i.test(href)) return false;
-    if (/^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0) return false;
-    if (/\.(png|jpe?g|gif|svg|css|js|ico|webp)(\?|$)/i.test(href)) return false;
-    if (href.indexOf('/upload/') === 0) return false;
-    return href.charAt(0) === '/' || href.indexOf(location.origin) === 0;
+    if (!href || !/^(?:\/|https?:\/\/)/i.test(href)) return false;
+    const url = new URL(href, location.origin);
+    if (url.origin !== location.origin) return false;
+    if (/^\/(?:upload|images|fonts|css|js|pages)\//.test(url.pathname)) return false;
+    return !/\.(?!html$)[a-z0-9]+$/i.test(url.pathname.split('/').pop());
   }
 
   function start() {
@@ -160,11 +134,11 @@
     started = true;
 
     $(document).on('click', 'a[href]', function (e) {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.which === 2) return;
+      if (e.isDefaultPrevented() || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.which === 2) return;
       if (!isInternalLink(this)) return;
       e.preventDefault();
       const href = this.getAttribute('href');
-      go(href.indexOf('http') === 0 ? href.replace(location.origin, '') : href);
+      go(href);
     });
 
     $(document).on('submit', '#searhc-form', function (e) {
@@ -177,7 +151,7 @@
       render();
     });
 
-    getTemplate(matchRoute().tpl);
+    getTemplate(IziRoutes.match(location.pathname).tpl);
     $.when(IziLayout.mountLayout()).always(function () {
       $.when(render()).always(hideBootLoader);
     });

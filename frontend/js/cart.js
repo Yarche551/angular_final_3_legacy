@@ -2,11 +2,6 @@
   window.IziPages = window.IziPages || {};
   let bound = false;
 
-  function go(url) {
-    if (window.IziRouter) IziRouter.go(url);
-    else location.href = url;
-  }
-
   function renderCart(res) {
     const $box = $('#cart-block-gods');
     $box.empty();
@@ -29,6 +24,13 @@
         </div>
       </div>`);
     });
+    updateCartSummary(res);
+    renderCartTotals(res);
+  }
+
+  function renderCartTotals(res) {
+    $('#cart-empty').prop('hidden', res.count > 0);
+    $('#cart-container').toggle(res.count > 0);
     $('#cart-count-block').text(res.count);
     $('#cart-total-block span').text(res.total);
   }
@@ -49,26 +51,26 @@
         number--;
         if (number === 0) return;
       }
-      IziApi.post('/cart/change', { id: parent.attr('data-id'), count: number }).done(function (res) {
-        $('#count-cart').text(res.count);
-        $('#cart-count-block').text(res.count);
-        $('#cart-total-block span').text(res.total);
-        quantityNum.val(res.position.count);
-        parent.find('.cart-block-price span').text(res.position.total);
+      const $buttons = parent.find('button').prop('disabled', true);
+      mutateCart('change', { id: parent.attr('data-id'), count: number }).done(function (res) {
+        if (!parent[0].isConnected) return;
+        renderCartTotals(res);
+        if (res.position) {
+          quantityNum.val(res.position.count);
+          parent.find('.cart-block-price span').text(res.position.total);
+        }
+      }).always(function () {
+        $buttons.prop('disabled', false);
       });
     });
 
     $(document).on('click', '.cart-close', function () {
       const parent = $(this).closest('.cart-block');
-      IziApi.post('/cart/remove', { id: parent.attr('data-id') }).done(function (res) {
-        if (res.count === 0) {
-          go('/');
-          return;
-        }
-        $('#count-cart').text(res.count);
+      const $cart = parent.closest('#cart');
+      mutateCart('remove', { id: parent.attr('data-id') }).done(function (res) {
+        if (!$cart[0].isConnected) return;
         parent.remove();
-        $('#cart-count-block').text(res.count);
-        $('#cart-total-block span').text(res.total);
+        renderCartTotals(res);
       });
     });
   }
@@ -76,12 +78,9 @@
   IziPages.cart = {
     init: function () {
       bindOnce();
+      const $cart = $('#cart');
       IziApi.get('/cart').done(function (res) {
-        if (!res.count) {
-          go('/');
-          return;
-        }
-        renderCart(res);
+        if ($cart[0].isConnected) renderCart(res);
       });
     },
     destroy: function () {},

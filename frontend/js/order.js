@@ -46,6 +46,7 @@
 
       IziApi.post('/orders', payload)
         .done(function (res) {
+          updateCartSummary({ count: 0, total: 0 });
           go(res.redirect || '/thanks');
         })
         .fail(function (xhr) {
@@ -59,8 +60,9 @@
     init: function () {
       bindOnce();
       $('#delivery-block-custom').hide();
+      const $form = $('#order-container');
       IziApi.get('/cart').done(function (res) {
-        if (!res.count) go('/');
+        if ($form[0].isConnected && !res.count) go('/cart');
       });
     },
     destroy: function () {},

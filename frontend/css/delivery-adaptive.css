@@ -1,11 +1,9 @@
-/*1024-1199*/
 @media screen and (max-width: 1199px) {
     .delivery-map {
         width: 590px;
     }
 }
 
-/*768-1023*/
 @media screen and (max-width: 1023px) {
     .delivery-map {
         width: 290px;
@@ -74,7 +72,6 @@
 
 }
 
-/*579-767*/
 @media screen and (max-width: 767px) {
     #delivery-container {
         margin: 0 auto;
@@ -112,7 +109,6 @@
     }
 }
 
-/*479-579*/
 @media screen and (max-width: 579px) {
     .delivery-description {
         width: 345px;
@@ -141,7 +137,6 @@
     }
 }
 
-/*320-479*/
 @media screen and (max-width: 370px) {
     .delivery-description {
         width: 300px;
